@@ -20,22 +20,26 @@ module.exports = {
   modules: [
     '@nuxtjs/axios'
   ],
+  pulugins: [
+    '~/plugins/axios.js'
+  ],
+  env: {
+    QIITA_TOKEN:process.env.QIITA_TOKEN
+  },
   /*
   ** Build configuration
   */
-  build: {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
-      if (isDev && isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
-      }
+  extend (config, { isDev, isClient }) {
+    if (isDev && isClient) {
+      config.module.rules.push({
+        enforce: 'pre',
+        test: /\.(js|vue)$/,
+        loader: 'eslint-loader',
+        exclude: /(node_modules)/
+      })
     }
   }
 }
