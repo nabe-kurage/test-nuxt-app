@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h3 class="title">Nuxt.jsのタグがつけられている投稿一覧</h3>
-    <ul class="list">
+    <h3 class="title">{{user.id}}</h3>
+    <div class="profile">
+      <img class="profileImg" :src="user.profile_image_url" width="120" :alt="`${user.id}のプロフィール画像`">
+      <p class="profileText">{{user.description || 'no description'}}</p>
+    </div>
+    <h3 class="title">{{user.id}}さんの投稿</h3>
+      <ul class="list">
       <li class="listItem" v-for="item in items" :key="item.id">
         <a :href="item.url">{{item.title}}
           <h4>
@@ -20,14 +25,16 @@
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
-
 export default {
-  async asyncData({app}) {
-    const items = await app.$axios.$get('http://qiita.com/api/v2/items?query=tag:nuxt.js')
+  head() {
     return {
-      items
+      title: this.user.id
     }
+  },
+  async asyncData({route, app}) {
+    const user = await app.$axios.$get(`http://qiita.com/api/v2/users/${route.params.id}`)
+    const items = await app.$axios.$get(`http://qiita.com/api/v2/items?query=user:${route.params.id}`)
+    return { user, items }
   }
 }
 </script>
@@ -44,6 +51,21 @@ body {
   font-weight: bold;
   justify-content: space-between;
 }
+.profile {
+  display: flex;
+  margin: auto;
+  width: 900px;
+  margin: 24px auto;
+  border: 1px solid rgb(0, 139, 176);
+  border-radius: 8px;
+  background-color: rgb(253, 226, 203);
+  padding: 16px;
+}
+
+.profileText {
+  margin-left: 16px;
+}
+
 .list {
   width: 900px;
   display: flex;
