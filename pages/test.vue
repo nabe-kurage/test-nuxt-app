@@ -1,23 +1,20 @@
 <template>
   <div>
-    <span>single</span>
-    <AppNavigation />
-    <hr>
-    <nuxt />
-    <nuxt-link to="/">top</nuxt-link>
-    <hr>
-    <footer>
-      footer
-    </footer>
-
+    <h3 class="title">test</h3>
   </div>
 </template>
 
 <script>
-import AppNavigation from ""
+import { mapGetters } from 'vuex'
 export default {
-  components: {
-    AppNavigation
+  async asyncData({ store }) {
+    if(store.getters['items'].length) {
+      return
+    }
+    await store.dispatch('fetchItems')
+  },
+  computed: {
+    ...mapGetters(['items'])
   }
 }
 </script>
@@ -34,21 +31,6 @@ body {
   font-weight: bold;
   justify-content: space-between;
 }
-.profile {
-  display: flex;
-  margin: auto;
-  width: 900px;
-  margin: 24px auto;
-  border: 1px solid rgb(0, 139, 176);
-  border-radius: 8px;
-  background-color: rgb(253, 226, 203);
-  padding: 16px;
-}
-
-.profileText {
-  margin-left: 16px;
-}
-
 .list {
   width: 900px;
   display: flex;
