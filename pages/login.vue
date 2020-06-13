@@ -1,24 +1,25 @@
 <template>
   <div>
-    <span>single</span>
-    <AppNavigation />
-    <hr>
-    <nuxt />
-    <nuxt-link to="/">top</nuxt-link>
-    <hr>
-    <footer>
-      footer
-    </footer>
-
+    <h3 class="title">ログインページ</h3>
+    <p>
+      <button type="button" @click="login">ログイン</button>
+      <nuxt-link to="/">トップページに戻る</nuxt-link>
+    </p>
   </div>
 </template>
 
 <script>
+import Cookies from 'universal-cookie'
 export default {
-  components: {
-    AppNavigation
+  methods : {
+    login() {
+      const cookies = new Cookies()
+      cookies.set('credential', 'true',{maxAge: 90})
+      this.$router.push('/')
+    }
   }
 }
+
 </script>
 
 <style>
@@ -33,21 +34,6 @@ body {
   font-weight: bold;
   justify-content: space-between;
 }
-.profile {
-  display: flex;
-  margin: auto;
-  width: 900px;
-  margin: 24px auto;
-  border: 1px solid rgb(0, 139, 176);
-  border-radius: 8px;
-  background-color: rgb(253, 226, 203);
-  padding: 16px;
-}
-
-.profileText {
-  margin-left: 16px;
-}
-
 .list {
   width: 900px;
   display: flex;
@@ -73,6 +59,18 @@ body {
   color: rgb(36, 36, 36);
 }
 
+.list--login {
+  padding: 16px;
+  border: 1px solid rgb(0, 139, 176);
+  border-radius: 8px;
+  margin-top: 16px;
+  list-style: none;
+  background-color: rgb(253, 226, 203);
+  width: 280px;
+  cursor: pointer;
+  margin: auto;
+}
+
 a,
 a:visited,
 a:hover {
@@ -80,4 +78,3 @@ a:hover {
   text-decoration: none;
 }
 </style>
-

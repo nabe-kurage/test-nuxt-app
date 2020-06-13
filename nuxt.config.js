@@ -2,6 +2,11 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  router: {
+    middleware: [
+      'auth'
+    ]
+  },
   head: {
     title: 'test-nuxt-app',
     titleTemplate: '%s | Nuxt.js tag items viewer',
