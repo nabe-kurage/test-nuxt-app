@@ -7,6 +7,7 @@ module.exports = {
       'auth'
     ]
   },
+  plugins: [{src: '~/plugins/logger', ssr:true}],
   head: {
     title: 'test-nuxt-app',
     titleTemplate: '%s | Nuxt.js tag items viewer',
