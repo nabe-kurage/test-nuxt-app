@@ -1,26 +1,7 @@
 <template>
   <div>
-    <h3 class="title">ログイン</h3>
-    <ul class="list--login">
-      <li><nuxt-link to='/login'>ログインページへ</nuxt-link></li>
-      <li><nuxt-link to='/authed-route'>認証が必要なページへ</nuxt-link></li>
-    </ul>
-    <h3 class="title">Nuxt.jsのタグがつけられている投稿一覧</h3>
-    <ul class="list">
-      <li class="listItem" v-for="item in items" :key="item.id">
-        <a :href="item.url">{{item.title}}
-          <h4>
-            <small>
-              <span>by </span>
-              <nuxt-link :to="`/users/${item.user.id}`">
-              {{item.user.id}}
-              </nuxt-link>
-            </small>
-          </h4>
-          <div class="text">{{item.body.slice(0, 130)}}</div>
-        </a>
-      </li>
-    </ul>
+    <h3 class="title">認証が必要なページ</h3>
+    <nuxt-link to="/">トップページに戻る</nuxt-link>
   </div>
 </template>
 
