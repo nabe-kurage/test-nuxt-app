@@ -1,9 +1,12 @@
 module.exports = {
   mode: 'universal',
-  srcDir: 'app'
+  srcDir: 'app',
   /*
   ** Headers of the page
   */
+  axios: {
+    baseURL: "https://nuxt-blog-service-f217f.firebaseio.com"
+  },
   router: {
     middleware: [
       'auth'
